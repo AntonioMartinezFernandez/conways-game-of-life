@@ -1,6 +1,7 @@
 package conway
 
 func calculateNextgen(grid Grid) Grid {
+	//! TODO: create a clon of the previous grid
 	nextGenGrid := grid
 
 	//! TODO: Implement real logic with Conway's Game of Life
