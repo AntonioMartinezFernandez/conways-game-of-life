@@ -1,17 +1,34 @@
 package main
 
 import (
+	"fmt"
 	"os"
 	"os/signal"
 	"syscall"
 	"time"
 
+	"github.com/AntonioMartinezFernandez/conways-game-of-life/internal/boardfile"
 	"github.com/AntonioMartinezFernandez/conways-game-of-life/internal/conway"
 	"github.com/AntonioMartinezFernandez/conways-game-of-life/internal/tui"
 )
 
+const (
+	boardPath     = "board"
+	defaultHeight = 10
+	defaultWidth  = 10
+)
+
 func main() {
-	board := conway.NewBoard(150, 150)
+	grid, height, width, err := boardfile.Load(boardPath)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "failed to load %s: %v\n", boardPath, err)
+		os.Exit(1)
+	}
+	if grid == nil {
+		height, width = defaultHeight, defaultWidth
+	}
+
+	board := conway.NewBoard(height, width, grid)
 	tuiDrawer := tui.NewDrawer(1, 10)
 
 	tui.SetupTerm()

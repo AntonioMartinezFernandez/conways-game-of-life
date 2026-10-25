@@ -10,13 +10,19 @@ type Board struct {
 	grid       Grid
 }
 
-func NewBoard(height, width int) *Board {
+// NewBoard creates a board of the given size. When grid is nil, a blank
+// grid is created; otherwise the provided grid is used as the initial state.
+func NewBoard(height, width int, grid Grid) *Board {
+	if grid == nil {
+		grid = newGrid(height, width)
+	}
+
 	return &Board{
 		mu:         sync.Mutex{},
 		height:     height,
 		width:      width,
 		generation: 0,
-		grid:       newGrid(height, width),
+		grid:       grid,
 	}
 }
 
