@@ -14,7 +14,7 @@ Conway's Game of Life is a cellular automaton devised by the British mathematici
 1. Clone the repository to your local machine.
 1. Install Go if you haven't already. You can download it from [the official Go website](https://golang.org/dl/).
 1. Navigate to the project directory in your terminal.
-1. Run `make run` to start the application.
+1. Run `make build` and `make play` to start the application.
 
 ## Pattern Taxonomy
 
