@@ -22,7 +22,7 @@ func NewDrawer(imageID int, cellSize int) *Drawer {
 }
 
 // Draw generates the image and displays it in the terminal.
-func (t *Drawer) Draw(generation int, boardHeight int, boardWidth int, boardGrid map[int]map[int]bool) {
+func (t *Drawer) Draw(generation int, boardHeight int, boardWidth int, boardGrid [][]bool) {
 	imageRGBA := t.createImage(boardHeight, boardWidth, boardGrid)
 
 	data, err := t.encodePNG(imageRGBA)
@@ -60,7 +60,7 @@ func (t *Drawer) Draw(generation int, boardHeight int, boardWidth int, boardGrid
 
 // createImage creates an image of size:
 // width * cellSize × height * cellSize pixels
-func (t *Drawer) createImage(boardHeight int, boardWidth int, grid map[int]map[int]bool) *image.RGBA {
+func (t *Drawer) createImage(boardHeight int, boardWidth int, grid [][]bool) *image.RGBA {
 	imgHeight := boardHeight * t.cellSize
 	imgWidth := boardWidth * t.cellSize
 

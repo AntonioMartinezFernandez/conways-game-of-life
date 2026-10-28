@@ -11,7 +11,8 @@ import (
 	"github.com/AntonioMartinezFernandez/conways-game-of-life/internal/conway"
 )
 
-func Load(path string) (grid conway.Grid, height int, width int, err error) {
+// Load returns grid, height, width, err
+func Load(path string) (conway.Grid, int, int, error) {
 	file, err := os.Open(path)
 	if errors.Is(err, fs.ErrNotExist) {
 		return nil, 0, 0, nil
@@ -21,7 +22,9 @@ func Load(path string) (grid conway.Grid, height int, width int, err error) {
 	}
 	defer file.Close()
 
-	grid = make(conway.Grid)
+	var grid conway.Grid
+	var height int
+	var width int
 
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
@@ -41,7 +44,7 @@ func Load(path string) (grid conway.Grid, height int, width int, err error) {
 			)
 		}
 
-		row := make(map[int]bool, width)
+		row := make([]bool, width)
 		for column := 0; column < len(line); column++ {
 			switch line[column] {
 			case '0':
@@ -58,7 +61,7 @@ func Load(path string) (grid conway.Grid, height int, width int, err error) {
 			}
 		}
 
-		grid[height] = row
+		grid = append(grid, row)
 		height++
 	}
 	if err := scanner.Err(); err != nil {

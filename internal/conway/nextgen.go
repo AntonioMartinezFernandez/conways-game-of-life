@@ -1,14 +1,18 @@
 package conway
 
 func calculateNextgen(grid Grid) Grid {
-	//! TODO: create a clon of the previous grid
-	nextGenGrid := grid
+	height := len(grid)
+	width := 0
+	if height > 0 {
+		width = len(grid[0])
+	}
+	nextGenGrid := NewGrid(height, width)
 
 	//! TODO: Implement real logic with Conway's Game of Life
-	if nextGenGrid[0][0] {
-		nextGenGrid[0][0] = false
-	} else {
-		nextGenGrid[0][0] = true
+	for h := range height {
+		for w := range width {
+			nextGenGrid[h][w] = !grid[h][w]
+		}
 	}
 
 	return nextGenGrid

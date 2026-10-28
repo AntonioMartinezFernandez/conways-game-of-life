@@ -14,7 +14,7 @@ type Board struct {
 // grid is created; otherwise the provided grid is used as the initial state.
 func NewBoard(height, width int, grid Grid) *Board {
 	if grid == nil {
-		grid = newGrid(height, width)
+		grid = NewGrid(height, width)
 	}
 
 	return &Board{
@@ -41,7 +41,7 @@ func (b *Board) Generation() int {
 	return b.generation
 }
 
-func (b *Board) Grid() map[int]map[int]bool {
+func (b *Board) Grid() [][]bool {
 	b.mu.Lock()
 	defer b.mu.Unlock()
 

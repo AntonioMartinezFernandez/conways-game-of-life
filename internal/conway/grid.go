@@ -1,11 +1,12 @@
 package conway
 
-type Grid map[int]map[int]bool
+type Grid [][]bool
 
-func newGrid(height int, width int) Grid {
-	grid := make(map[int]map[int]bool)
+func NewGrid(height int, width int) Grid {
+
+	grid := make([][]bool, height)
 	for h := range height {
-		grid[h] = make(map[int]bool)
+		grid[h] = make([]bool, width)
 		for w := range width {
 			grid[h][w] = false
 		}

@@ -13,8 +13,8 @@ import (
 )
 
 const (
-	boardPath     = "board"
-	defaultHeight = 10
+	boardPath     = "./board"
+	defaultHeight = 5
 	defaultWidth  = 10
 )
 
